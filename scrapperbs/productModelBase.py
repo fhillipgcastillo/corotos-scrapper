@@ -9,4 +9,5 @@ class ProductModelBase:
   def __str__(self):
     return self.hashId+" "+self.title
 
- 
+  def getJsonString(self):
+    return "{title:"+self.title+", price:"+self.price+", hashId:"+self.hashId+", listingPath:"+self.listingPath+", fullUrl:"+self.fullUrl+", }"
