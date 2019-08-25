@@ -2,10 +2,10 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as bsoup
 from productModelBase import ProductModelBase
 import re
+import requests
 
-def Main():
-  url = "https://www.corotos.com.do"
 
+def getHtmlContentWithUrlOpen(url):
   #open connection and reads content
   client = uReq(url)
   print("Requesting url", url)
@@ -14,6 +14,31 @@ def Main():
 
   # close connection
   client.close()
+  return content
+
+def getHtmlContentWithRequests(url):
+  # using requests lib
+  headers = {
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'
+  }
+  content = ""
+  try:
+    req = requests.get(url, headers=headers, timeout=10)
+    if req.status_code == 200:
+      content = req.text
+  except Exception as ex:
+      print(str(ex))
+  finally:
+      print("finished with requests lib")
+
+  return content
+
+def Main():
+  url = "https://www.corotos.com.do"
+  # content = getHtmlContentWithUrlOpen(url)
+  
+  # More faster that UrlOpen
+  content = getHtmlContentWithRequests(url)
 
   # parse content to soup
   soupedContent = bsoup(content, "html.parser")
@@ -62,7 +87,7 @@ def Main():
 
     productObject = ProductModelBase(titleTag.string, priceTag.string, href, fullLink, hashId, thumbnailUrl, category)
     
-    print(productObject)
+    # print(productObject)
     # print(thumbnailUrl)
     # print("thumbnail", dir(thumbnailDiv["style"]))
     # print(fullLink)
