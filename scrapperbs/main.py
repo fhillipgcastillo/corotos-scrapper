@@ -8,13 +8,16 @@ def Main():
 
   #open connection and reads content
   client = uReq(url)
+  print("Requesting url", url)
   content = client.read()
+  print("Reading content")
 
   # close connection
   client.close()
 
   # parse content to soup
   soupedContent = bsoup(content, "html.parser")
+  print("Parsing content")
 
   # to find
   # soupedContent.findAll("<tagname>", {"property":"value"})
@@ -35,7 +38,8 @@ def Main():
   # /listings/celulares-y-tabletas-186/25c04925-8643-4156-a7e9-b3b35491f211/iphone-8-plus-64gb-factory
 
   productObjects = []
-
+  print("Parsing data")
+  
   for product in products:
     # href format
     # /listings/<category-<id>>/<publication id>/<posible title -<id>
@@ -64,7 +68,8 @@ def Main():
     # print(fullLink)
     
     # load more button " button data-name="load_more""
-
+  print("finished")
+  
 def splitListingUrl(listingUrl):
   return listingUrl.split("/")
 
@@ -77,3 +82,4 @@ def getHashId(listingUrl=""):
   return hashId or ""
 
 Main()
+# sleep for x time and re-run

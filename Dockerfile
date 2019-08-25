@@ -2,8 +2,8 @@ FROM python:3
 
 WORKDIR /usr/src/scrapperbs
 
-COPY /scrapperbs/main.py ./
 COPY requirements.txt ./
+ADD ./scrapperbs/*.py ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -12,4 +12,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # CMD [ "pwd" ]
 # CMD [ "ls", "-al" ]
-# CMD [ "python", "main.py" ]
+CMD [ "python", "main.py" ]
