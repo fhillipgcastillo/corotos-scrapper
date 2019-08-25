@@ -1,0 +1,1 @@
+docker cp ./scrapperbs/main.py 83485bf8e5a2:/usr/src/scrapperbs
