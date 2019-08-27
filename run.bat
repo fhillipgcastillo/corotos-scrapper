@@ -1,1 +1,0 @@
-docker run -it --rm --name scrapperbs -v "$PWD"/scrapperbs:/usr/src/scrapperbs fhillip/python3-beautifulsoup:master python main.py

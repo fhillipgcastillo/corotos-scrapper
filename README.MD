@@ -37,3 +37,16 @@ docker exec -it CONTAINER_ID CONTAINER_SCRIPT
 
 ## run command on the machin visualizing from outside of the container
 docker exec -it CONTAINER_NAME COMMAND
+
+## MOngo
+Start a mongo server instance
+$ docker run --name some-mongo -d mongo:tag
+... where some-mongo is the name you want to assign to your container and tag is the tag specifying the MongoDB version you want. See the list above for relevant tags.
+
+### Use mongo and mongo-express
+* configure the mongo-composer.yml
+* then run:
+* * docker-compose.exe -f mongo-composer.yml up
+
+tini -- /docker-entrypoint.sh
+-- /docker-entrypoint.sh mongo-express
