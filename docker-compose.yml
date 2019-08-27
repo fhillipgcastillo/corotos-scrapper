@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  api:
+    image: fhillip/mongoapi:2.1.0
+    build: ./mongoapi
+    restart: always
+    ports:
+      - '8081:8081'
+    environment:
+      - MONGO_ENDPOINT=mongodb//localhost:27017/
+    volumes:
+      - ./mongoapi:/usr/src/mongoapi
+    links:
+      - mongo
+  mongo:
+    image: fhillip/mongodb:latest
+    build: ./mongodb
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongodb/data:/usr/src/fhillip/mongodb/data
+    

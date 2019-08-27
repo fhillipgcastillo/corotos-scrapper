@@ -1,4 +1,5 @@
-
+### composer
+docker-compose up -d --build
 
 ## Build
 docker build -t fhillip/python3-beautifulsoup:master -t fhillip/python3-beautifulsoup:latest .
